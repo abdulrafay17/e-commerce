@@ -1,26 +1,107 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Poppins, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+.swiper-pagination-bullet {
+  background-color: white !important;
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white !important;
+  opacity: 1;
+}
+
+/* Change the default arrow symbols */
+.swiper-button-prev::after {
+  content: "←"; /* or any text/icon */
+  font-weight: 900;
+  font-size: 20px;
+  color: red;   /* change color */
+}
+
+.swiper-button-next::after {
+  content: "→";
+  font-size: 20px;
+  font-weight: 900;
+  color: red;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+}
+
+.dank-ass-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dank-ass-loader .row {
+  display: flex;
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  margin: 0 -6px; /* -$size / 2 = -12px/2 */
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 21.6px solid #fd7000; /* 12px * 1.8 */
+  animation: blink 1s infinite;
+  filter: drop-shadow(0 0 18px #fd7000); /* 12px * 1.5 */
+}
+
+.arrow.down {
+  transform: rotate(180deg);
+}
+
+/* Outer arrows (18 total) */
+.arrow.outer-1  { animation-delay: -0.0555s; }
+.arrow.outer-2  { animation-delay: -0.1111s; }
+.arrow.outer-3  { animation-delay: -0.1666s; }
+.arrow.outer-4  { animation-delay: -0.2222s; }
+.arrow.outer-5  { animation-delay: -0.2777s; }
+.arrow.outer-6  { animation-delay: -0.3333s; }
+.arrow.outer-7  { animation-delay: -0.3888s; }
+.arrow.outer-8  { animation-delay: -0.4444s; }
+.arrow.outer-9  { animation-delay: -0.5s; }
+.arrow.outer-10 { animation-delay: -0.5555s; }
+.arrow.outer-11 { animation-delay: -0.6111s; }
+.arrow.outer-12 { animation-delay: -0.6666s; }
+.arrow.outer-13 { animation-delay: -0.7222s; }
+.arrow.outer-14 { animation-delay: -0.7777s; }
+.arrow.outer-15 { animation-delay: -0.8333s; }
+.arrow.outer-16 { animation-delay: -0.8888s; }
+.arrow.outer-17 { animation-delay: -0.9444s; }
+.arrow.outer-18 { animation-delay: -1s; }
+
+/* Inner arrows (6 total) */
+.arrow.inner-1  { animation-delay: -0.1666s; }
+.arrow.inner-2  { animation-delay: -0.3333s; }
+.arrow.inner-3  { animation-delay: -0.5s; }
+.arrow.inner-4  { animation-delay: -0.6666s; }
+.arrow.inner-5  { animation-delay: -0.8333s; }
+.arrow.inner-6  { animation-delay: -1s; }
+
+@keyframes blink {
+  0%   { opacity: 0.1; }
+  30%  { opacity: 1; }
+  100% { opacity: 0.1; }
 }
