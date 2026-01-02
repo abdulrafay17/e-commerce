@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default async function BrowseBySubCat({subcategories}) {
 
-  const res = await fetch(`${process.env.FETCH_URL}/api/categories/Electronics/${subcategories}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_FETCH_URL}/api/categories/Electronics/${subcategories}`, {
     cache: "no-store",
   });
   
