@@ -93,7 +93,7 @@ export default function CartSidebar({check}) {
             <span className="font-bold">${cartTotal(itemsInCart)}</span>
           </div>
           <Link href={`/cart`}>
-          <button className="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition-all">
+          <button onClick={() => setOpen(false)} className="w-full cursor-pointer bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition-all">
             Move To full Cart
           </button>
           </Link>

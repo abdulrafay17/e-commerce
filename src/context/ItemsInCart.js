@@ -48,8 +48,8 @@ export function CartProvider({ children }) {
   async function updateCart() {
     try {
       const url = isSuccess
-        ? "http://localhost:3000/api/updateCart/put"
-        : "http://localhost:3000/api/updateCart/post";
+        ? `${process.env.FETCH_URL}/api/updateCart/put`
+        : `${process.env.FETCH_URL}/api/updateCart/post`;
 
       const method = isSuccess ? "PUT" : "POST";
 

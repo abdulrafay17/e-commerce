@@ -34,7 +34,7 @@ const Footer = () => {
             <Link href="mailto:exclusive@gmail.com">exclusive@gmail.com</Link>
           </p>
           <p className="text-sm">
-            <Link href="tel:+88015888889999">+88015-88888-9999</Link>
+            <Link href="tel:+88015888889999">+123 456 789</Link>
           </p>
         </div>
 

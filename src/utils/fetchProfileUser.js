@@ -7,7 +7,7 @@ export default async function fetchProfileUser() {
 
     if (!token?.value) return {};
     
-    const response = await fetch('http://localhost:3000/api/profile/get', {
+    const response = await fetch(`${process.env.FETCH_URL}/api/profile/get`, {
         method: 'GET',
         headers: {
             Cookie: `auth_token=${token.value}`

@@ -16,4 +16,4 @@ export function middleware(req) {
 
 export const config = {
   matcher: ["/my-account/:path*", "/cart"]
-};
+};  
