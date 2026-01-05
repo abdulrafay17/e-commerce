@@ -13,9 +13,11 @@ export function CartProvider({ children }) {
   useEffect(() => {
     async function getProfile() {
       try {
-        const res = await axios.get("/api/profile/get");
-        const id = res?.data?.user?.user_id || res?.data?.user?._id || null;
-        setUser_id(id);
+        if (isSuccess) {
+          const res = await axios.get("/api/profile/get");
+          const id = res?.data?.user?.user_id || res?.data?.user?._id || null;
+          setUser_id(id);
+        }
       } catch (err) {
         console.error("Profile fetch error:", err);
       }

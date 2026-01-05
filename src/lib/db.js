@@ -1,7 +1,7 @@
 import { Pool } from "pg";
 
 const db = new Pool({
-    connectionString: process.env.DB_URL,
+    connectionString: process.env.NEXT_PUBLIC_SUPABASE_URL,
 });
 
 

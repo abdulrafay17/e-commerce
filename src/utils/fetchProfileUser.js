@@ -5,7 +5,10 @@ export default async function fetchProfileUser() {
     const cookieStore = await cookies();
     const token = cookieStore.get('auth_token');
 
-    if (!token?.value) return {};
+    if (!token || !token.value) {
+        console.log("No token found, skipping fetch.");
+        return {}; 
+    }
     
     const response = await fetch(`${process.env.NEXT_PUBLIC_FETCH_URL}/api/profile/get`, {
         method: 'GET',
@@ -15,5 +18,5 @@ export default async function fetchProfileUser() {
         cache: "no-cache",
     });
 
-    return await response.json();
+    return await response.json();   
 }
