@@ -7,7 +7,7 @@ export default async function ProductCloseUp({ params }) {
   const head = await fetchProfileUser();
   const { name } = await params;
 
-  const response = await fetch(`http://localhost:3000/api/products/${encodeURIComponent(name)}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_FETCH_URL}/api/products/${encodeURIComponent(name)}`, {
     cache: 'no-cache'
   })
 

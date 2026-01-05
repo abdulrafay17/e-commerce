@@ -9,7 +9,7 @@ export default async function FlashSale() {
 
   // SERVER SIDE RENDERING FOR FLASH SALE
 
-    const response = await fetch("http://localhost:3000/api/flashsale", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_FETCH_URL}/api/flashsale`, {
       cache: "no-cache",
     });
     const products = await response.json();

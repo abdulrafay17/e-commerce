@@ -7,7 +7,7 @@ export default async function fetchProfileUser() {
 
     if (!token || !token.value) {
         console.log("No token found, skipping fetch.");
-        return {}; 
+        return {}; // Return null or {} depending on how your UI handles empty states
     }
     
     const response = await fetch(`${process.env.NEXT_PUBLIC_FETCH_URL}/api/profile/get`, {

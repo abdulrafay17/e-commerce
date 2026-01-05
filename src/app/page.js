@@ -16,11 +16,11 @@ import fetchProfileUser from "@/utils/fetchProfileUser";
 export default async function Home() {
 
   // SERVER SIDE RENDERING FOR FLASH SALE
-    const response = await fetch("http://localhost:3000/api/flashsale", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_FETCH_URL}/api/flashsale`, {
       cache: "no-cache",
     });
     const products = await response.json();
-  
+    console.log(products)
   // SERVER SIDE RENDERING FOR FLASH SALE ENDED
   // SERVER SIDE RENDERING FOR MAIN HEADER
   

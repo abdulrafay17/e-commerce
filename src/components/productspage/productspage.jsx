@@ -11,7 +11,7 @@ export default function ProductsPage() {
   
   useEffect(()=> {
     async function fetchProducts() {
-      const res = await fetch(`http://localhost:3000/api/products?limit=${limit}`, {
+      const res = await fetch(`/api/products?limit=${limit}`, {
       cache: "no-store",
     });
       const result = await res.json()

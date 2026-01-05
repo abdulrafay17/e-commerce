@@ -15,7 +15,7 @@ export default async function MyAccount() {
   }
 
   // Fetch user info with token
-  const response = await fetch(`http://localhost:3000/api/profile/get`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_FETCH_URL}/api/profile/get`, {
     method: "GET",
     headers: {
       Cookie: `auth_token=${token.value}`,

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 export default async function CategoryProductsPage({params}) {
     const { category } = await params;
-    const res = await fetch(`http://localhost:3000/api/categories/${encodeURIComponent(category)}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_FETCH_URL}/api/categories/${encodeURIComponent(category)}`, {
         cache: "no-store",
     });
 
