@@ -1,24 +1,18 @@
 import Footer from "@/components/footer/footer";
 import MainHeader from "@/components/headers/main-header";
-import ProfilePage from "@/components/profile/profile";
 import fetchProfileUser from "@/utils/fetchProfileUser";
+import MyAccountShell from "@/components/profile/MyAccountShell";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function MyAccount() {
   const head = await fetchProfileUser();
-  const cookieStore = cookies();
-  const token = cookieStore.get("auth_token");
+  const cookieStore = await cookies();
 
-  if (!token) {
-    redirect("/");
-  }
-
-  // Fetch user info with token
   const response = await fetch(`${process.env.NEXT_PUBLIC_FETCH_URL}/api/profile/get`, {
     method: "GET",
     headers: {
-      Cookie: `auth_token=${token.value}`,
+      Cookie: cookieStore.toString(),
     },
     cache: "no-store",
   });
@@ -31,8 +25,8 @@ export default async function MyAccount() {
 
   return (
     <>
-      <MainHeader check={head.user} />
-      <ProfilePage user={data.user} /> {/* Passing user to client component */}
+      <MainHeader check={head.user || data.user} />
+      <MyAccountShell user={data.user} />
       <Footer />
     </>
   );

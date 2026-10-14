@@ -34,3 +34,24 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Pending Account Work
+
+Before implementing the account security flow, complete these features:
+
+- Password changing:
+  - Validate new password and confirmation.
+  - Hash password with bcrypt.
+  - Prevent unauthorized user ID updates.
+- Address management:
+  - Store profile address in `profiles.address`.
+  - Add validation and update API support.
+- Billing information:
+  - Create `billing_information` table.
+  - Connect it with `users.id`.
+  - Add API and UI for saving billing details.
+- Google account password behavior:
+  - Google users should not change password from the normal password field.
+  - Detect Google users through the NextAuth session provider.
+- Logout:
+  - Support both custom `auth_token` logout and Google NextAuth logout.

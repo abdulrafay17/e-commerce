@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import Modal from "../modal/modal";
 import { useAuth } from "@/context/LoginContext.js";
 import { redirect } from "next/navigation";
+import { FaGoogle } from "react-icons/fa";
+import { signIn } from "next-auth/react";
 
 
 const LoginPage = () => {
@@ -102,6 +104,13 @@ const LoginPage = () => {
               <a href="#" className="text-red-500 hover:underline">Forget Password?</a>
               
             </div>
+            <button
+              type="button"
+              onClick={() => signIn("google", { callbackUrl: "/" })}
+              className="flex w-full items-center justify-center rounded border border-gray-300 bg-white px-4 py-2 text-gray-700 transition-colors hover:bg-gray-100"
+            >
+              <FaGoogle className="mr-2" /> Continue with Google
+            </button>
             <p className="text-center text-gray-600 mt-4">
                  Dont have an Account Create one{' '}
                 <Link href="/sign" className="text-red-500 hover:underline" >Sign Up</Link>

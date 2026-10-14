@@ -1,7 +1,14 @@
+"use client"
 import { FaTv } from "react-icons/fa";
 import { FaCcVisa, FaCcMastercard, FaCcPaypal} from "react-icons/fa6";
+import cartTotal from "@/utils/cartTotal";
+import { useCart } from "@/context/ItemsInCart";
 
 export default function CheckoutPage() {
+
+  const { itemsInCart, removeItem } = useCart();
+
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-10">
       {/* Billing Details */}
@@ -70,16 +77,17 @@ export default function CheckoutPage() {
       {/* Order Summary */}
       <div>
         <div className="space-y-5 border border-gray-200 rounded-lg p-6">
-
-          <div className="flex justify-between items-center">
+        {itemsInCart.map((items, index)=> (
+          <div key={index} className="flex justify-between items-center">
             <div className="flex items-center gap-3 mb-10">
-              <FaTv className="text-red-500 text-xl" />
-              <span className="font-bold text-xl">LCD Monitor</span>
+              <span className="font-bold text-xl">{items.name}</span>
             </div>
             <div className="flex items-center gap-3 mb-10">
-                <span className="font-bold text-xl">$650</span>
+                <span className="font-bold text-xl">${items.price}</span>
             </div>
           </div>
+        ))}
+          
 
           <hr />
 
@@ -119,22 +127,12 @@ export default function CheckoutPage() {
             </label>
           </div>
 
-          <div className="flex gap-2 mt-4">
-            <input
-              type="text"
-              placeholder="Coupon Code"
-              className="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-400"
-            />
-            <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-              Apply Coupon
-            </button>
-          </div>
-
           <button className="w-full mt-4 bg-red-500 text-white font-semibold py-3 rounded-lg hover:bg-red-600 transition">
             Place Order
           </button>
         </div>
       </div>
     </div>
+
   );
 }

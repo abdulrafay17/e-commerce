@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken'
 import db from '@/lib/db.js';
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route.js";
 
 export async function GET(req) {
   try {
@@ -7,8 +9,20 @@ export async function GET(req) {
     const token = cookie?.split("auth_token=")[1]?.split(";")[0];
 
     if (!token) {
-      console.log("❌ No token found");
-      return Response.json({ success: false, message: "No token found" }, { status: 401 });
+      const session = await getServerSession(authOptions);
+      const googleEmail = session?.user?.email;
+
+      if (!googleEmail) {
+        console.log("❌ No auth session found");
+        return Response.json({ success: false, message: "No session found" }, { status: 401 });
+      }
+
+      const googleResult = await db.query(
+        "SELECT user_id, first_name, last_name, address, email FROM profiles WHERE email = $1",
+        [googleEmail]
+      );
+      console.log("✅ Google profile DB result:", googleResult.rows);
+      return Response.json({ success: true, user: googleResult.rows[0] });
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);

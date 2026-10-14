@@ -34,41 +34,8 @@ export default function ProfilePage({ user: serverUser }) {
   }
 
   return (
-    <div className="flex flex-col sm:flex-row min-h-screen w-screen bg-white">
-      {/* left sidebar */}
-      <aside className="w-screen md:w-1/2 p-6 border-r border-gray-200">
-        <div className="text-sm text-gray-500 mb-4">Home / My Account</div>
-        <h2 className="text-lg font-semibold mb-4">Manage My Account</h2>
-        <div className="space-y-2">
-          <div className="text-red-500 p-2 rounded cursor-pointer">
-            My Profile
-          </div>
-          <div className="p-2 rounded cursor-pointer hover:bg-gray-100">
-            Address Book
-          </div>
-          <div className="p-2 rounded cursor-pointer hover:bg-gray-100">
-            My Payment Options
-          </div>
-        </div>
-
-        <h2 className="text-lg font-semibold mt-6 mb-4">My Orders</h2>
-        <div className="space-y-2">
-          <div className="p-2 rounded cursor-pointer hover:bg-gray-100">
-            My Returns
-          </div>
-          <div className="p-2 rounded cursor-pointer hover:bg-gray-100">
-            My Cancellations
-          </div>
-        </div>
-
-        <div className="space-y-2">
-          <h2 className="text-lg font-semibold mt-6 mb-4">My Wishlist</h2>
-        </div>
-      </aside>
-
-      {/* main content */}
-      <main className="w-full !h-auto flex-col md:w-3/4 p-6">
-        <div className="text-red-500 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl mb-4 font-semibold">
+    <>
+      <div className="text-red-500 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl mb-4 font-semibold">
           Welcome! {`${user?.first_name} ${user?.last_name || ""}`}
         </div>
 
@@ -215,7 +182,6 @@ export default function ProfilePage({ user: serverUser }) {
             </button>
           </div>
         </div>
-      </main>
-    </div>
+    </>
   );
 }

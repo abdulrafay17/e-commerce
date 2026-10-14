@@ -26,7 +26,7 @@ export async function POST(req) {
         
         const resultProfiles = await db.query('INSERT INTO profiles(user_id, first_name, email) VALUES ($1, $2, $3)', [returnedId, returnedName, returnedContactOrEmail])
 
-        return Response.json({success: true, message: 'ACCOUNT CREATED SUCCESSFULLY'})
+        return Response.json({success: true, message: 'ACCOUNT CREATED SUCCESSFULLY. NOW YOU CAN LOGIN'})
         
     } catch (error) {
         console.log(error)

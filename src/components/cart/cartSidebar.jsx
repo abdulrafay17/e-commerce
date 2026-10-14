@@ -16,7 +16,7 @@ export default function CartSidebar({check}) {
   const [mounted, setMounted] = useState(false);
 
   const pathname = usePathname();
-  const noToThis = ['/login', '/sign'].includes(pathname);
+  const hideOnAuthPages = ['/login', '/sign', '/cart', '/cart/checkout'].includes(pathname);
 
   useEffect(() => {
     setMounted(true);
@@ -24,7 +24,7 @@ export default function CartSidebar({check}) {
 
   if (!mounted) return null;
 
-  if (noToThis) {
+  if (hideOnAuthPages) {
     return null
   } else if (!check) {
     return null

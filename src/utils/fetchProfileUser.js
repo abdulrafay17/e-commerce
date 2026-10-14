@@ -1,4 +1,7 @@
 import { cookies } from "next/headers";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route.js";
+import db from "@/lib/db.js";
 
 
 export default async function fetchProfileUser() {
@@ -6,8 +9,17 @@ export default async function fetchProfileUser() {
     const token = cookieStore.get('auth_token');
 
     if (!token || !token.value) {
-        console.log("No token found, skipping fetch.");
-        return {}; // Return null or {} depending on how your UI handles empty states
+        const session = await getServerSession(authOptions);
+        const email = session?.user?.email;
+
+        if (!email) return {};
+
+        const result = await db.query(
+            "SELECT user_id, first_name, last_name, address, email FROM profiles WHERE email = $1",
+            [email]
+        );
+
+        return { success: true, user: result.rows[0] };
     }
     
     const response = await fetch(`${process.env.NEXT_PUBLIC_FETCH_URL}/api/profile/get`, {

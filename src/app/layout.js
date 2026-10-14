@@ -5,6 +5,7 @@ import { LoginProvider } from "@/context/LoginContext";
 import { CartProvider } from "@/context/ItemsInCart";
 import CartSidebar from "@/components/cart/cartSidebar";
 import fetchProfileUser from "@/utils/fetchProfileUser";
+import Providers from './provider.jsx'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,12 +28,14 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Providers>
         <LoginProvider>
           <CartProvider>
           <CartSidebar check={head.user} />
             {children}
           </CartProvider>
         </LoginProvider>
+        </Providers>
       </body>
     </html>
   );

@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Modal from '../modal/modal';
 import { useSignUp } from '@/context/SignUpContext';
+import { signIn } from "next-auth/react";
 
 const SignupPage = () => {
   const router = useRouter();
@@ -47,7 +48,7 @@ const SignupPage = () => {
           setShowModal(true)
           setTimeout(()=> {
             setShowModal(false);
-            result.data.success && router.push('/');
+            result.data.success && router.push('/login');
           }, 2500)
         },0)
       }
@@ -138,6 +139,7 @@ const SignupPage = () => {
               <button
                 type="button"
                 className="w-full bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded flex items-center justify-center hover:bg-gray-100 transition-colors"
+                onClick={() => signIn("google", { callbackUrl: "/" })}
               >
                 <FaGoogle className="mr-2" /> Sign up with Google
               </button>
